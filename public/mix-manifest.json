@@ -1,0 +1,9 @@
+{
+    "/js/app.js": "/js/app.js",
+    "/css/app.css": "/css/app.css",
+    "/css/style.css": "/css/style.css",
+    "/js/despesas/index.js": "/js/despesas/index.js",
+    "/js/eventos/index.js": "/js/eventos/index.js",
+    "/js/geral.js": "/js/geral.js",
+    "/js/plugins/jquery/jquery.mask.min.js": "/js/plugins/jquery/jquery.mask.min.js"
+}
