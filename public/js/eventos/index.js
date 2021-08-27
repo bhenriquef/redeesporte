@@ -1,1 +1,194 @@
-!function(t){var o={};function e(a){if(o[a])return o[a].exports;var n=o[a]={i:a,l:!1,exports:{}};return t[a].call(n.exports,n,n.exports,e),n.l=!0,n.exports}e.m=t,e.c=o,e.d=function(t,o,a){e.o(t,o)||Object.defineProperty(t,o,{enumerable:!0,get:a})},e.r=function(t){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:!0})},e.t=function(t,o){if(1&o&&(t=e(t)),8&o)return t;if(4&o&&"object"==typeof t&&t&&t.__esModule)return t;var a=Object.create(null);if(e.r(a),Object.defineProperty(a,"default",{enumerable:!0,value:t}),2&o&&"string"!=typeof t)for(var n in t)e.d(a,n,function(o){return t[o]}.bind(null,n));return a},e.n=function(t){var o=t&&t.__esModule?function(){return t.default}:function(){return t};return e.d(o,"a",o),o},e.o=function(t,o){return Object.prototype.hasOwnProperty.call(t,o)},e.p="/",e(e.s=41)}({41:function(t,o,e){t.exports=e(42)},42:function(t,o){function e(){var t=requestAjax("GET","dashboard/listarEventos"),o="";if(t.status){var e=t.responseJSON;$.each(e,(function(t,e){o+='<tr><td scope="row">'+e.id+"</td><td>"+e.titulo+"</td><td>"+e.codigo_projeto+"</td><td>"+e.nome_usuario+"</td><td>"+e.data_evento+"</td><td>R$ "+e.valor_evento+'</td><td><button type="button" class="btn btn-link tooltips" data-placement="top" onclick="modalEditarEvento('+e.id+');" title="Editar Evento"><i class="fas fa-edit"></i></button><button type="button" class="btn btn-link text-success tooltips" data-placement="top" onclick="modalNovaDespesa('+e.id+');" title="Adicionar despesas"><i class="fas fa-hand-holding-usd"></i></button><button type="button" class="btn btn-link tooltips" data-placement="top" onclick="modalListDespesas('+e.id+');" title="Ver despesas"><i class="fas fa-file-invoice-dollar"></i></button><button type="button" class="btn btn-link text-danger tooltips" data-placement="top" onclick="modalApagarEvento('+e.id+')" title="Apagar Evento"><i class="fas fa-trash"></i></button></td></tr>'}))}$("#table-eventos tbody").html(o)}$((function(){e()})),window.modalNovoEvento=function(){$("#modal-novo_evento").modal("show"),$("#modal-novo_evento-data_evento").mask("00/00/0000"),$("#modal-novo_evento-valor_evento").mask("#.###.###.###.###,00",{reverse:!0}),$("#modal-novo_evento-codigo_projeto").mask("000-000-0"),$("#modal-novo_evento-data_evento").val("").change(),$("#modal-novo_evento-valor_evento").val("").change(),$("#modal-novo_evento-codigo_projeto").val("").change(),$("#modal-novo_evento-titulo").val("").change()},window.novoEvento=function(){requestAjax("POST","dashboard/novoEvento",$("#form-novo_evento").serialize()).status&&($("#modal-novo_evento").modal("hide"),e())},window.modalApagarEvento=function(t){$("#modal-apagar_evento").modal("show"),$("#modal-apagar_evento-id").val(t)},window.apagarEvento=function(){var t=$("#modal-apagar_evento-id").val();requestAjax("DELETE","dashboard/deletarEvento/"+t,$("#form-apagar_evento").serialize()).status&&($("#modal-apagar_evento").modal("hide"),e())},window.modalEditarEvento=function(t){var o=requestAjax("GET","dashboard/pegarEvento/"+t);if(o.status){var e=o.responseJSON;$("#modal-editar_evento").modal("show"),$("#modal-editar_evento-data_evento").mask("00/00/0000"),$("#modal-editar_evento-valor_evento").mask("#.###.###.###.###,00",{reverse:!0}),$("#modal-editar_evento-codigo_projeto").mask("000-000-0"),$("#modal-editar_evento-id").val(e.id).change(),$("#modal-editar_evento-data_evento").val(e.data_evento).change(),$("#modal-editar_evento-valor_evento").val(e.valor_evento).change(),$("#modal-editar_evento-codigo_projeto").val(e.codigo_projeto).change(),$("#modal-editar_evento-titulo").val(e.titulo).change()}},window.editarEvento=function(){var t=$("#modal-editar_evento-id").val();requestAjax("PUT","dashboard/editarEvento/"+t,$("#form-editar_evento").serialize()).status&&($("#modal-editar_evento").modal("hide"),e())}}});
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "/";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ "./resources/js/eventos/index.js":
+/*!***************************************!*\
+  !*** ./resources/js/eventos/index.js ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$(function () {
+  listEvents();
+});
+
+function listEvents() {
+  var result = requestAjax("GET", "dashboard/listarEventos");
+  var html = "";
+
+  if (result.status) {
+    var data = result.responseJSON;
+    $.each(data, function (index, value) {
+      html += "<tr>" + '<td scope="row">' + value["id"] + "</td>" + "<td>" + value["titulo"] + "</td>" + "<td>" + value["codigo_projeto"] + "</td>" + "<td>" + value["nome_usuario"] + "</td>" + "<td>" + value["data_evento"] + "</td>" + "<td>R$ " + value["valor_evento"] + "</td>" + "<td>" + '<button type="button" class="btn btn-link text-white tooltips" data-placement="top" onclick="modalEditarEvento(' + value["id"] + ');" title="Editar Evento"><i class="fas fa-edit"></i></button>' + '<button type="button" class="btn btn-link text-white tooltips" data-placement="top" onclick="modalListDespesas(' + value["id"] + ');" title="Ver despesas"><i class="fas fa-file-invoice-dollar"></i></button>' + '<button type="button" class="btn btn-link text-white tooltips" data-placement="top" onclick="modalNovaDespesa(' + value["id"] + ');" title="Adicionar despesas"><i class="fas fa-hand-holding-usd"></i></button>' + '<button type="button" class="btn btn-link text-danger tooltips" data-placement="top" onclick="modalApagarEvento(' + value["id"] + ')" title="Apagar Evento"><i class="fas fa-trash"></i></button>' + "</td>" + "</tr>";
+    });
+  }
+
+  $("#table-eventos tbody").html(html);
+}
+
+window.modalNovoEvento = function () {
+  $("#modal-novo_evento").modal("show");
+  $("#modal-novo_evento-data_evento").mask("00/00/0000");
+  $("#modal-novo_evento-valor_evento").mask("#.###.###.###.###,00", {
+    reverse: true
+  });
+  $("#modal-novo_evento-codigo_projeto").mask("000-000-0");
+  $("#modal-novo_evento-data_evento").val("").change();
+  $("#modal-novo_evento-valor_evento").val("").change();
+  $("#modal-novo_evento-codigo_projeto").val("").change();
+  $("#modal-novo_evento-titulo").val("").change();
+};
+
+window.novoEvento = function () {
+  var result = requestAjax("POST", "dashboard/novoEvento", $("#form-novo_evento").serialize());
+
+  if (result.status) {
+    $("#modal-novo_evento").modal("hide");
+    listEvents();
+  }
+};
+
+window.modalApagarEvento = function (id) {
+  $("#modal-apagar_evento").modal("show");
+  $("#modal-apagar_evento-id").val(id);
+};
+
+window.apagarEvento = function () {
+  var id = $("#modal-apagar_evento-id").val();
+  var result = requestAjax("DELETE", "dashboard/deletarEvento/" + id, $("#form-apagar_evento").serialize());
+
+  if (result.status) {
+    $("#modal-apagar_evento").modal("hide");
+    listEvents();
+  }
+};
+
+window.modalEditarEvento = function (id) {
+  var result = requestAjax("GET", "dashboard/pegarEvento/" + id);
+
+  if (result.status) {
+    var data = result.responseJSON;
+    $("#modal-editar_evento").modal("show");
+    $("#modal-editar_evento-data_evento").mask("00/00/0000");
+    $("#modal-editar_evento-valor_evento").mask("#.###.###.###.###,00", {
+      reverse: true
+    });
+    $("#modal-editar_evento-codigo_projeto").mask("000-000-0");
+    $("#modal-editar_evento-id").val(data["id"]).change();
+    $("#modal-editar_evento-data_evento").val(data["data_evento"]).change();
+    $("#modal-editar_evento-valor_evento").val(data["valor_evento"]).change();
+    $("#modal-editar_evento-codigo_projeto").val(data["codigo_projeto"]).change();
+    $("#modal-editar_evento-titulo").val(data["titulo"]).change();
+  }
+};
+
+window.editarEvento = function () {
+  var id = $("#modal-editar_evento-id").val();
+  var result = requestAjax("PUT", "dashboard/editarEvento/" + id, $("#form-editar_evento").serialize());
+
+  if (result.status) {
+    $("#modal-editar_evento").modal("hide");
+    listEvents();
+  }
+};
+
+/***/ }),
+
+/***/ 1:
+/*!*********************************************!*\
+  !*** multi ./resources/js/eventos/index.js ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! C:\wamp64\www\rede_esporte\resources\js\eventos\index.js */"./resources/js/eventos/index.js");
+
+
+/***/ })
+
+/******/ });

@@ -1,4 +1,5 @@
 <?php
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -20,6 +21,7 @@ use Illuminate\Support\Facades\Route;
 // Auth::routes();
 
 Route::get('login', 'AuthController@index');
+Route::get('', 'AuthController@index');
 Route::post('login', 'AuthController@login');
 Route::get('registrar', 'AuthController@tela_registro');
 Route::post('registrar', 'AuthController@registrar');

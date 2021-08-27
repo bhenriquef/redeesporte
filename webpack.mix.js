@@ -1,4 +1,4 @@
-const mix = require('laravel-mix');
+const mix = require("laravel-mix");
 
 /*
  |--------------------------------------------------------------------------
@@ -11,11 +11,15 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css')
-    .postCss('resources/css/style.css', 'public/css')
-    .js('resources/js/eventos/index.js', 'public/js/eventos')
-    .js('resources/js/geral.js', 'public/js')
-    .js('resources/js/despesas/index.js', 'public/js/despesas')
-    .js('resources/js/plugins/jquery/jquery.mask.min.js', 'public/js/plugins/jquery');
-    
+mix.js("resources/js/app.js", "public/js")
+    .sass("resources/sass/app.scss", "public/css")
+    .postCss("resources/css/register/style.css", "public/css/register")
+    .postCss("resources/css/login/style.css", "public/css/login")
+    .postCss("resources/css/dashboard/style.css", "public/css/dashboard")
+    .js("resources/js/eventos/index.js", "public/js/eventos")
+    .js("resources/js/geral.js", "public/js")
+    .js("resources/js/despesas/index.js", "public/js/despesas")
+    .js(
+        "resources/js/plugins/jquery/jquery.mask.min.js",
+        "public/js/plugins/jquery"
+    );
